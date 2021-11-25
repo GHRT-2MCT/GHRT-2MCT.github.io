@@ -1,15 +1,18 @@
-var client_id = '6247141433f742069af737fa75514817';
-var client_secret = '0b46b8949b8643e5837d84f486e266cc';
-var redirect_uri = 'http://127.0.0.1:5500/index.html';
+let client_id = '6247141433f742069af737fa75514817';
+let client_secret = '0b46b8949b8643e5837d84f486e266cc';
+let redirect_uri = 'http://127.0.0.1:5500/index.html';
 
-var access_token = '';
-var refresh_token = 'AQA2vs06DOpXDAXvxX1f1Ax3WupRvNOLYVMQSCMvtDaAfc4lPkjuHV3Ey5Fz9Fj9De-V4Zdtz_tJt4LhuTP01BhloGuaJ4xxlNxvM2L6T5VMZ5AOTC1d5BfCGLK4dg1ZSTI';
+let access_token = '';
+let refresh_token = 'AQA2vs06DOpXDAXvxX1f1Ax3WupRvNOLYVMQSCMvtDaAfc4lPkjuHV3Ey5Fz9Fj9De-V4Zdtz_tJt4LhuTP01BhloGuaJ4xxlNxvM2L6T5VMZ5AOTC1d5BfCGLK4dg1ZSTI';
 
 const TOKEN = "https://accounts.spotify.com/api/token";
 const RECOMMENDATION = 'https://api.spotify.com/v1/recommendations';
 const GENRES = 'https://api.spotify.com/v1/recommendations/available-genre-seeds';
+const FEATURES = 'https://api.spotify.com/v1/audio-features/';
 
-var genres_arr;
+let search_arr;
+let tracks_arr;
+let features_arr;
 
 function onPageLoad() {
     refreshAccessToken();
@@ -36,7 +39,7 @@ function callAuthorizationApi(body) {
 }
 function handleAuthorizationResponse() {
     if ( this.status == 200 ) {
-        var data = JSON.parse(this.responseText);
+        let data = JSON.parse(this.responseText);
         if ( data.access_token != undefined ) {
             access_token = data.access_token;
         }
@@ -65,72 +68,123 @@ function callApi(method, url, body, callback) {
 // Genres
 function requestGenres() {
     if ( access_token != null ) {
-        callApi( "GET", GENRES, null, handleGenresResponse );
+        callApi("GET", GENRES, null, handleGenresResponse );
     } else {
         alert('Authorization needed');
     }
 }
 function handleGenresResponse() {
     if ( this.status == 200 ) {
-        var genres = JSON.parse(this.responseText);
-        placeSearchGenres(genres);
+        handleSearch(JSON.parse(this.responseText));
     } else if ( this.status == 401 ) {
         refreshAccessToken()
     } else {
         console.log(this.responseText);
-        alert(this.responseText);
     }
 }
 
 // Recommendations
-function requestRecommendation(genre) {
+function requestRecommendations(genre) {
     if ( access_token != null && genre != null) {
-        callApi( "GET", RECOMMENDATION  + "?limit=1&seed_genres=" + genre, null, handleRecommendationResponse );
+        callApi("GET", RECOMMENDATION  + "?limit=5&target_popularity=40&seed_genres=" + genre, null, handleRecommendationsResponse );
     } else {
         alert('Authorization needed');
     }
 }
-function handleRecommendationResponse() {
+function handleRecommendationsResponse() {
     if ( this.status == 200 ) {
-        var recommendation = JSON.parse(this.responseText);
-        console.log(recommendation);
+        handleTracks(JSON.parse(this.responseText));
     } else if ( this.status == 401 ) {
         refreshAccessToken()
     } else {
         console.log(this.responseText);
-        alert(this.responseText);
     }
 }
+
+// Features
+function requestFeatures(track_id) {
+    if ( access_token != null ) {
+        callApi("GET", FEATURES + track_id, null, handleFeaturesResponse );
+    } else {
+        alert('Authorization needed');
+    }
+}
+function handleFeaturesResponse() {
+    if ( this.status == 200 ) {
+        handleFeatures(JSON.parse(this.responseText));
+    } else if ( this.status == 401 ) {
+        refreshAccessToken()
+    } else {
+        console.log(this.responseText);
+    }
+}
+
 
 
 /*
     Genres search
 */
-function placeSearchGenres(genres) {
-    genres_arr = genres.genres.slice();
+function handleSearch(search) {
+    search_arr = search.genres.slice();
 }
 
-function searchGenres() {
-    var input = document.getElementById('searchGenres');
-    var filter = input.value.toUpperCase();
-    var genre_counter = 0;
-    html = '';
+function placeSearch() {
+    let input = document.getElementById('searchGenres');
+    let filter = input.value.toUpperCase();
+    let search_counter = 0;
+    let body = '';
 
-    for (i = 0; i < genres_arr.length; i++) {
-        var genre = genres_arr[i];
-        if (genre.toUpperCase().startsWith(filter) && genre_counter < 3) {
-            genre_counter += 1;
-            html += '<li id="searchLI'+ genre_counter 
-                    +'" class="searchLI" href="#" onclick="searchLI('
-                    + genre_counter +')">' 
-                    + genre +'</li>';
+    for (i = 0; i < search_arr.length; i++) {
+        let search = search_arr[i];
+        if (search.toUpperCase().startsWith(filter) && search_counter < 3) {
+            search_counter += 1;
+            body += '<li id="searchLI'
+                    + search_counter +'" class="searchLI" href="#" onclick="selectSearchLI('
+                    + search_counter +')">' 
+                    + search +'</li>';
         }
     }
-    document.getElementById('searchUL').innerHTML = html;
+    document.getElementById('searchUL').innerHTML = body;
 }
 
-function searchLI(number) {
-    var genre = document.getElementById('searchLI' + number).innerHTML;
-    console.log(genre);
-    requestRecommendation(genre);
+function selectSearchLI(search_counter) {
+    let search = document.getElementById('searchLI' + search_counter).innerHTML;
+    requestRecommendations(search);
+}
+
+
+/*
+    Handle tracks
+*/
+function handleTracks(tracks) {
+    tracks_arr = tracks.tracks.slice();
+    placeTracks();
+}
+
+function placeTracks() {
+    let track_counter = 0; 
+    let body = '';
+    for (i = 0; i < tracks_arr.length; i++) {
+        var track = tracks_arr[i];
+        track_counter += 1;
+        body += '<li id="trackLI'
+                    + track_counter +'" class="trackLI" href="#" onclick="selectTrackLI('
+                    + track_counter +')">'
+                    + track.name +'</li>';
+    }
+    document.getElementById('trackUL').innerHTML = body;
+}
+
+function selectTrackLI(track_counter) {
+    requestFeatures(tracks_arr[track_counter].id);
+}
+
+
+
+
+/*
+    Handle features
+*/
+function handleFeatures(features) {
+    console.log(features);
 }
