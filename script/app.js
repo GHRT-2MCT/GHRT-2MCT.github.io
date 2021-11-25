@@ -113,19 +113,24 @@ function placeSearchGenres(genres) {
 function searchGenres() {
     var input = document.getElementById('searchGenres');
     var filter = input.value.toUpperCase();
+    var genre_counter = 0;
+    html = '';
 
     for (i = 0; i < genres_arr.length; i++) {
-        genre = genres_arr[i];
-        if (genre.toUpperCase().indexOf(filter) > -1) {
-            document.getElementById('searchLI').innerHTML = genre;
-            break;
-        } else {
-            document.getElementById('searchLI').innerHTML = '';
+        var genre = genres_arr[i];
+        if (genre.toUpperCase().startsWith(filter) && genre_counter < 3) {
+            genre_counter += 1;
+            html += '<li id="searchLI'+ genre_counter 
+                    +'" class="searchLI" href="#" onclick="searchLI('
+                    + genre_counter +')">' 
+                    + genre +'</li>';
         }
-      }
+    }
+    document.getElementById('searchUL').innerHTML = html;
 }
 
-function searchLI() {
-    var genre = document.getElementById('searchLI').innerHTML;
+function searchLI(number) {
+    var genre = document.getElementById('searchLI' + number).innerHTML;
+    console.log(genre);
     requestRecommendation(genre);
 }

@@ -9,13 +9,12 @@
     <script src="script/app.js"></script>
 </head>
 <body onload="onPageLoad()">
-    <!-- Temporary
-    <input type="button" onclick="requestRecommendation()" value="Request Recommendation"><br/>
-    <input type="button" onclick="requestGenres()" value="Request Genres"><br/> -->
     <input type="text" onkeyup="searchGenres()" id="searchGenres" placeholder="Search for genres.."><br/>
 
     <ul id="searchUL">
-        <li id="searchLI" class="searchLI" href="#" onclick="searchLI()">LI</li>
+        <li id="searchLI1" class="searchLI" href="#" onclick="searchLI(1)">LI</li>
+        <li id="searchLI2" class="searchLI" href="#" onclick="searchLI(2)">LI</li>
+        <li id="searchLI3" class="searchLI" href="#" onclick="searchLI(3)">LI</li>
     </ul>
 </body>
 </html>
