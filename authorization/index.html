@@ -6,16 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eindopdracht</title>
     <link rel="stylesheet" href="css/screen.css">
-    <script src="script/app.js"></script>
+    <script src="script/with.js"></script>
 </head>
 <body onload="onPageLoad()">
-    <!-- Temporary
+    <input type="button" onclick="requestAuthorization()" value="Request Authorization"><br/>
     <input type="button" onclick="requestRecommendation()" value="Request Recommendation"><br/>
-    <input type="button" onclick="requestGenres()" value="Request Genres"><br/> -->
-    <input type="text" onkeyup="searchGenres()" id="searchGenres" placeholder="Search for genres.."><br/>
-
-    <ul id="searchUL">
-        <li id="searchLI" class="searchLI" href="#" onclick="searchLI()">LI</li>
-    </ul>
+    <input type="button" onclick="requestGenres()" value="Request Genres"><br/>
 </body>
 </html>
