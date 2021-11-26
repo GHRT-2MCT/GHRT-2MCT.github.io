@@ -7,12 +7,14 @@
     <title>Eindopdracht</title>
     <link rel="stylesheet" href="css/screen.css">
     <script src="script/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
 </head>
 <body onload="onPageLoad()">
     <input type="text" onkeyup="placeSearch()" id="searchGenres" placeholder="Search for genres.."><br/>
 
     <ul id="searchUL"></ul>
-
     <ul id="trackUL"></ul>
+
+    <canvas id="featureChart"></canvas>
 </body>
 </html>

@@ -13,6 +13,7 @@ const FEATURES = 'https://api.spotify.com/v1/audio-features/';
 let search_arr;
 let tracks_arr;
 let features_arr;
+let features_chart
 
 function onPageLoad() {
     refreshAccessToken();
@@ -86,7 +87,7 @@ function handleGenresResponse() {
 // Recommendations
 function requestRecommendations(genre) {
     if ( access_token != null && genre != null) {
-        callApi("GET", RECOMMENDATION  + "?limit=5&target_popularity=40&seed_genres=" + genre, null, handleRecommendationsResponse );
+        callApi("GET", RECOMMENDATION  + "?limit=5&min_popularity=10&seed_genres=" + genre, null, handleRecommendationsResponse );
     } else {
         alert('Authorization needed');
     }
@@ -166,11 +167,11 @@ function placeTracks() {
     let body = '';
     for (i = 0; i < tracks_arr.length; i++) {
         var track = tracks_arr[i];
-        track_counter += 1;
         body += '<li id="trackLI'
                     + track_counter +'" class="trackLI" href="#" onclick="selectTrackLI('
                     + track_counter +')">'
                     + track.name +'</li>';
+        track_counter += 1;
     }
     document.getElementById('trackUL').innerHTML = body;
 }
@@ -186,5 +187,32 @@ function selectTrackLI(track_counter) {
     Handle features
 */
 function handleFeatures(features) {
-    console.log(features);
+    features_arr = features;
+    placeFeatures();
+}
+
+function placeFeatures() {
+    let chart = document.getElementById('featureChart').getContext('2d');
+    if (features_chart != null) {
+        features_chart.destroy();
+    }
+    features_chart = new Chart(chart, {
+        type:'bar',
+        data:{
+            labels:['acousticness', 'danceability', 'energy', 'valence'],
+            datasets:[{
+                data:[features_arr.acousticness, 
+                      features_arr.danceability,
+                      features_arr.energy,
+                      features_arr.valence]
+            }]
+        },
+        options:{
+            plugins: {
+                legend: {
+                  display: false
+                }
+            }
+        }
+    });
 }
