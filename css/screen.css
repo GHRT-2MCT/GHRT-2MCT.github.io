@@ -1,0 +1,103 @@
+:root {
+    --global-color-alpha: #ffffff;
+    --global-color-beta: #191414;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+
+html, body {
+    scroll-behavior: smooth;
+    font-family: monospace;
+    background-color: var(--global-color-beta);
+    color: var(--global-color-alpha);
+    height: 100vh;
+}
+
+
+/* Container */
+.container {
+    display: grid;
+    display: -ms-grid;
+    grid-template-columns: 10% 1fr 10%;
+    -ms-grid-columns: 10% 1fr 10%;
+    grid-template-rows: 64px auto 32px auto 24px auto;
+    -ms-grid-rows: 64px auto 32px auto 24px auto;
+}
+
+
+/* Search bar and results */
+.c-searchGenres {
+    grid-column: 2 / 3;
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 1;
+    grid-row: 1 / 2;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 1;
+
+    margin: 16px 24px;
+    padding: 2px 12px;
+    border: 1px solid var(--global-color-alpha);
+    border-radius: 24px;
+    background-color: var(--global-color-alpha);
+    color: var(--global-color-beta);
+}
+
+.c-searchUL {
+    grid-column: 2 / 3;
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 1;
+    grid-row: 2 / 3;
+    -ms-grid-row: 2;
+    -ms-grid-row-span: 1;
+
+    list-style-type: none;
+    margin: 0;
+    margin-left: 36px;
+    padding: 0;
+}
+.o-searchLI {
+    padding-top: 8px;
+}
+.o-searchA, .o-searchA:visited {
+    text-decoration: none;
+    color: var(--global-color-alpha);
+}
+
+/* Track results */
+.c-trackUL {
+    grid-column: 2 / 3;
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 1;
+    grid-row: 4 / 5;
+    -ms-grid-row: 4;
+    -ms-grid-row-span: 1;
+
+    list-style-type: none;
+    margin: 0;
+    margin-left: 36px;
+    padding: 0;
+    white-space: nowrap; 
+    overflow: hidden;
+}
+.o-trackLI {
+    padding-top: 8px;
+}
+.o-trackA, .o-trackA:visited {
+    text-decoration: none;
+    color: var(--global-color-alpha);
+}
+
+
+/* Feature results */
+.c-featureChart {
+    grid-column: 1 / 4;
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 1;
+    grid-row: 6 / 7;
+    -ms-grid-row: 6;
+    -ms-grid-row-span: 1;
+}

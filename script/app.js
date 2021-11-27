@@ -139,17 +139,18 @@ function placeSearch() {
         let search = search_arr[i];
         if (search.toUpperCase().startsWith(filter) && search_counter < 3) {
             search_counter += 1;
-            body += '<li id="searchLI'
-                    + search_counter +'" class="searchLI" href="#" onclick="selectSearchLI('
+            body += '<li id="searchLI' + search_counter +'" class="o-searchLI">'
+                    +'<a class="o-searchA" id="searchA'
+                    + search_counter +'" href="#" onclick="selectSearchLI(' 
                     + search_counter +')">' 
-                    + search +'</li>';
+                    + search +'</a></li>';
         }
     }
     document.getElementById('searchUL').innerHTML = body;
 }
 
 function selectSearchLI(search_counter) {
-    let search = document.getElementById('searchLI' + search_counter).innerHTML;
+    let search = document.getElementById('searchA' + search_counter).innerHTML;
     requestRecommendations(search);
 }
 
@@ -167,10 +168,11 @@ function placeTracks() {
     let body = '';
     for (i = 0; i < tracks_arr.length; i++) {
         var track = tracks_arr[i];
-        body += '<li id="trackLI'
-                    + track_counter +'" class="trackLI" href="#" onclick="selectTrackLI('
+        body += '<li id="trackLI' + track_counter +'" class="o-trackLI">'
+                    +'<a class="o-trackA" id="trackA'
+                    + track_counter +'" href="#" onclick="selectTrackLI('
                     + track_counter +')">'
-                    + track.name +'</li>';
+                    + track.name +'</a></li>';
         track_counter += 1;
     }
     document.getElementById('trackUL').innerHTML = body;

@@ -10,11 +10,13 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
 </head>
 <body onload="onPageLoad()">
-    <input type="text" onkeyup="placeSearch()" id="searchGenres" placeholder="Search for genres.."><br/>
+    <div class="container">
+        <input class="c-searchGenres" type="text" onkeyup="placeSearch()" id="searchGenres" placeholder="Genres"><br/>
 
-    <ul id="searchUL"></ul>
-    <ul id="trackUL"></ul>
+        <ul class="c-searchUL" id="searchUL"></ul>
+        <ul class="c-trackUL" id="trackUL"></ul>
 
-    <canvas id="featureChart"></canvas>
+        <canvas class="c-featureChart" id="featureChart"></canvas>
+    </div>
 </body>
 </html>
