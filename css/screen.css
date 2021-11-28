@@ -11,7 +11,8 @@
 
 html, body {
     scroll-behavior: smooth;
-    font-family: monospace;
+    font-family: roboto, sans-serif;
+    font-style: normal;
     background-color: var(--global-color-beta);
     color: var(--global-color-alpha);
     height: 100vh;
@@ -24,13 +25,13 @@ html, body {
     display: -ms-grid;
     grid-template-columns: 10% 1fr 10%;
     -ms-grid-columns: 10% 1fr 10%;
-    grid-template-rows: 64px auto 32px auto 24px auto;
-    -ms-grid-rows: 64px auto 32px auto 24px auto;
+    grid-template-rows: 96px 48px auto 32px auto 24px auto;
+    -ms-grid-rows: 96px 48px auto 32px auto 24px auto;
 }
 
 
 /* Search bar and results */
-.c-searchGenres {
+.c-searchH1 {
     grid-column: 2 / 3;
     -ms-grid-column: 2;
     -ms-grid-column-span: 1;
@@ -38,15 +39,9 @@ html, body {
     -ms-grid-row: 1;
     -ms-grid-row-span: 1;
 
-    margin: 16px 24px;
-    padding: 2px 12px;
-    border: 1px solid var(--global-color-alpha);
-    border-radius: 24px;
-    background-color: var(--global-color-alpha);
-    color: var(--global-color-beta);
+    margin-top: 48px;
 }
-
-.c-searchUL {
+.c-searchGenres {
     grid-column: 2 / 3;
     -ms-grid-column: 2;
     -ms-grid-column-span: 1;
@@ -54,10 +49,29 @@ html, body {
     -ms-grid-row: 2;
     -ms-grid-row-span: 1;
 
+    margin: 4px 2px;
+    padding: 2px 12px;
+    border: 1px solid var(--global-color-alpha);
+    border-radius: 4px;
+    background-color: var(--global-color-alpha);
+    color: var(--global-color-beta);
+    font-weight: 600;
+}
+
+.c-searchUL {
+    grid-column: 2 / 3;
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 1;
+    grid-row: 3 / 4;
+    -ms-grid-row: 3;
+    -ms-grid-row-span: 1;
+
     list-style-type: none;
     margin: 0;
-    margin-left: 36px;
     padding: 0;
+
+    font-weight: 500;
+    font-size: 14px;
 }
 .o-searchLI {
     padding-top: 8px;
@@ -72,13 +86,12 @@ html, body {
     grid-column: 2 / 3;
     -ms-grid-column: 2;
     -ms-grid-column-span: 1;
-    grid-row: 4 / 5;
-    -ms-grid-row: 4;
+    grid-row: 5 / 6;
+    -ms-grid-row: 5;
     -ms-grid-row-span: 1;
 
     list-style-type: none;
     margin: 0;
-    margin-left: 36px;
     padding: 0;
     white-space: nowrap; 
     overflow: hidden;
@@ -91,13 +104,23 @@ html, body {
     color: var(--global-color-alpha);
 }
 
+.o-trackH3 {
+    font-size: 16px;
+    font-weight: 400;
+}
+.o-trackH4 {
+    font-size: 12px;
+    font-weight: 300;
+    color: gray;
+}
+
 
 /* Feature results */
 .c-featureChart {
     grid-column: 1 / 4;
     -ms-grid-column: 2;
     -ms-grid-column-span: 1;
-    grid-row: 6 / 7;
-    -ms-grid-row: 6;
+    grid-row: 7 / 8;
+    -ms-grid-row: 7;
     -ms-grid-row-span: 1;
 }

@@ -168,11 +168,12 @@ function placeTracks() {
     let body = '';
     for (i = 0; i < tracks_arr.length; i++) {
         var track = tracks_arr[i];
+        console.log(track);
         body += '<li id="trackLI' + track_counter +'" class="o-trackLI">'
-                    +'<a class="o-trackA" id="trackA'
-                    + track_counter +'" href="#" onclick="selectTrackLI('
-                    + track_counter +')">'
-                    + track.name +'</a></li>';
+                    +'<a class="o-trackA" id="trackA'+ track_counter +'" href="#" '
+                    +'onclick="selectTrackLI('+ track_counter +')">'
+                    +'<h3 class="o-trackH3">'+ track.name +'</h3>'
+                    +'<h4 class="o-trackH4">'+ track.artists[0].name +'</h4></a></li>';
         track_counter += 1;
     }
     document.getElementById('trackUL').innerHTML = body;
