@@ -35,10 +35,9 @@ html, body {
     display: -ms-grid;
     grid-template-columns: 10% 1fr 10%;
     -ms-grid-columns: 10% 1fr 10%;
-    grid-template-rows: 104px 64px 48px 48px auto 48px auto 24px auto;
-    -ms-grid-rows: 104px 64px 48px 48px auto 48px auto 24px auto;
+    grid-template-rows: 104px 64px 48px 48px auto 64px auto 24px;
+    -ms-grid-rows: 104px 64px 48px 48px auto 64px auto 24px;
 }
-
 .c-title {
     grid-column: 2 / 3;
     -ms-grid-column: 2;
@@ -50,7 +49,7 @@ html, body {
     align-self: flex-end;
 }
 
-/* Search bar and results */
+/* Search bar */
 .c-searchH1 {
     grid-column: 2 / 3;
     -ms-grid-column: 2;
@@ -79,8 +78,8 @@ html, body {
     font-weight: var(--global-font-weight---);
 }
 
-
-.c-searchH3 {
+/* Results */
+.c-resultsH3 {
     grid-column: 2 / 3;
     -ms-grid-column: 2;
     -ms-grid-column-span: 1;
@@ -92,7 +91,7 @@ html, body {
     font-weight: var(--global-font-weight---);
     align-self: flex-end;
 }
-.c-searchUL {
+.c-resultsUL {
     grid-column: 2 / 3;
     -ms-grid-column: 2;
     -ms-grid-column-span: 1;
@@ -105,43 +104,17 @@ html, body {
     padding: 0;
     padding-left: 12px;
 }
-.o-searchLI {
+
+/* Search results */
+.o-resultLI {
     padding-top: 10px;
 }
-.o-searchA, .o-searchA:visited {
+.o-resultA, .o-resultA:visited {
     text-decoration: none;
     color: var(--global-color-alpha);
 }
 
 /* Track results */
-.c-trackH3 {
-    grid-column: 2 / 3;
-    -ms-grid-column: 2;
-    -ms-grid-column-span: 1;
-    grid-row: 6 / 7;
-    -ms-grid-row: 6;
-    -ms-grid-row-span: 1;
-
-    font-size: var(--global-font-size--);
-    font-weight: var(--global-font-weight---);
-    align-self: flex-end;
-}
-.c-trackUL {
-    grid-column: 2 / 3;
-    -ms-grid-column: 2;
-    -ms-grid-column-span: 1;
-    grid-row: 7 / 8;
-    -ms-grid-row: 7;
-    -ms-grid-row-span: 1;
-
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    padding-left: 12px;
-
-    white-space: nowrap; 
-    overflow: hidden;
-}
 .o-trackLI {
     padding-top: 10px;
 }
@@ -149,12 +122,11 @@ html, body {
     text-decoration: none;
     color: var(--global-color-alpha);
 }
-
-.o-trackH3 {
+.o-resultH3 {
     font-size: var(--global-font-size--);
     font-weight: var(--global-font-weight-);
 }
-.o-trackH4 {
+.o-resultH4 {
     font-size: var(--global-font-size);
     font-weight: var(--global-font-weight);
     color: gray;
