@@ -188,6 +188,11 @@ function placeTracks() {
 }
 
 function selectTrackLI(track_counter) {
+    for (i = 0; i < tracks_arr.length; i++) {
+        document.getElementById('trackLI' + i).style.border = "none";
+    }
+    document.getElementById('trackLI' + track_counter).style.border = "1px var(--global-color-charlie) solid";
+    document.getElementById('trackLI' + track_counter).style.borderRadius = "8px";
     requestFeatures(tracks_arr[track_counter].id);
 }
 

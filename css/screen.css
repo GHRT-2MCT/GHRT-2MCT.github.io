@@ -125,7 +125,9 @@ html, body {
 
 /* Track results */
 .o-trackLI {
-    padding-top: 10px;
+    margin-top: 8px;
+    margin-left: -12px;
+    padding: 4px 10px;
 }
 .o-trackA, .o-trackA:visited {
     text-decoration: none;
@@ -172,7 +174,7 @@ html, body {
 
 @media screen and (min-width: 916px) {
     .container {
-        grid-template-columns: 25% 1fr 25%;
+        grid-template-columns: 30% 1fr 30%;
         -ms-grid-columns: 25% 1fr 25%;
         grid-template-rows: 104px 64px 48px 64px auto 64px 200px;
         -ms-grid-rows: 104px 64px 48px 64px auto 64px 200px;
