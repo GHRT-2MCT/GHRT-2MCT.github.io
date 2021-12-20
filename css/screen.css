@@ -1,6 +1,16 @@
 :root {
     --global-color-alpha: #ffffff;
-    --global-color-beta: #191414;
+    --global-color-beta: #232424;
+
+    --global-font-weight: 300;
+    --global-font-weight-: 400;
+    --global-font-weight--: 500;
+    --global-font-weight---: 600;
+
+    --global-font-size: 12px;
+    --global-font-size-: 14px;
+    --global-font-size--: 16px;
+    --global-font-size---: 20px;
 }
 
 * {
@@ -11,7 +21,7 @@
 
 html, body {
     scroll-behavior: smooth;
-    font-family: roboto, sans-serif;
+    font-family: Inter, roboto, sans-serif;
     font-style: normal;
     background-color: var(--global-color-beta);
     color: var(--global-color-alpha);
@@ -25,13 +35,11 @@ html, body {
     display: -ms-grid;
     grid-template-columns: 10% 1fr 10%;
     -ms-grid-columns: 10% 1fr 10%;
-    grid-template-rows: 96px 48px auto 32px auto 24px auto;
-    -ms-grid-rows: 96px 48px auto 32px auto 24px auto;
+    grid-template-rows: 104px 64px 48px 48px auto 48px auto 24px auto;
+    -ms-grid-rows: 104px 64px 48px 48px auto 48px auto 24px auto;
 }
 
-
-/* Search bar and results */
-.c-searchH1 {
+.c-title {
     grid-column: 2 / 3;
     -ms-grid-column: 2;
     -ms-grid-column-span: 1;
@@ -39,14 +47,27 @@ html, body {
     -ms-grid-row: 1;
     -ms-grid-row-span: 1;
 
-    margin-top: 48px;
+    align-self: flex-end;
 }
-.c-searchGenres {
+
+/* Search bar and results */
+.c-searchH1 {
     grid-column: 2 / 3;
     -ms-grid-column: 2;
     -ms-grid-column-span: 1;
     grid-row: 2 / 3;
     -ms-grid-row: 2;
+    -ms-grid-row-span: 1;
+
+    padding-bottom: 8px;
+    align-self: flex-end;
+}
+.c-searchGenres {
+    grid-column: 2 / 3;
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 1;
+    grid-row: 3 / 4;
+    -ms-grid-row: 3;
     -ms-grid-row-span: 1;
 
     margin: 4px 2px;
@@ -55,34 +76,23 @@ html, body {
     border-radius: 4px;
     background-color: var(--global-color-alpha);
     color: var(--global-color-beta);
-    font-weight: 600;
+    font-weight: var(--global-font-weight---);
 }
 
-.c-searchUL {
+
+.c-searchH3 {
     grid-column: 2 / 3;
     -ms-grid-column: 2;
     -ms-grid-column-span: 1;
-    grid-row: 3 / 4;
-    -ms-grid-row: 3;
+    grid-row: 4 / 5;
+    -ms-grid-row: 4;
     -ms-grid-row-span: 1;
 
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-
-    font-weight: 500;
-    font-size: 14px;
+    font-size: var(--global-font-size--);
+    font-weight: var(--global-font-weight---);
+    align-self: flex-end;
 }
-.o-searchLI {
-    padding-top: 8px;
-}
-.o-searchA, .o-searchA:visited {
-    text-decoration: none;
-    color: var(--global-color-alpha);
-}
-
-/* Track results */
-.c-trackUL {
+.c-searchUL {
     grid-column: 2 / 3;
     -ms-grid-column: 2;
     -ms-grid-column-span: 1;
@@ -93,11 +103,47 @@ html, body {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    padding-left: 12px;
+}
+.o-searchLI {
+    padding-top: 10px;
+}
+.o-searchA, .o-searchA:visited {
+    text-decoration: none;
+    color: var(--global-color-alpha);
+}
+
+/* Track results */
+.c-trackH3 {
+    grid-column: 2 / 3;
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 1;
+    grid-row: 6 / 7;
+    -ms-grid-row: 6;
+    -ms-grid-row-span: 1;
+
+    font-size: var(--global-font-size--);
+    font-weight: var(--global-font-weight---);
+    align-self: flex-end;
+}
+.c-trackUL {
+    grid-column: 2 / 3;
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 1;
+    grid-row: 7 / 8;
+    -ms-grid-row: 7;
+    -ms-grid-row-span: 1;
+
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding-left: 12px;
+
     white-space: nowrap; 
     overflow: hidden;
 }
 .o-trackLI {
-    padding-top: 8px;
+    padding-top: 10px;
 }
 .o-trackA, .o-trackA:visited {
     text-decoration: none;
@@ -105,12 +151,12 @@ html, body {
 }
 
 .o-trackH3 {
-    font-size: 16px;
-    font-weight: 400;
+    font-size: var(--global-font-size--);
+    font-weight: var(--global-font-weight-);
 }
 .o-trackH4 {
-    font-size: 12px;
-    font-weight: 300;
+    font-size: var(--global-font-size);
+    font-weight: var(--global-font-weight);
     color: gray;
 }
 
@@ -120,7 +166,7 @@ html, body {
     grid-column: 1 / 4;
     -ms-grid-column: 2;
     -ms-grid-column-span: 1;
-    grid-row: 7 / 8;
-    -ms-grid-row: 7;
+    grid-row: 9 / 10;
+    -ms-grid-row: 9;
     -ms-grid-row-span: 1;
 }

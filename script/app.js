@@ -135,18 +135,24 @@ function placeSearch() {
     let search_counter = 0;
     let body = '';
 
-    for (i = 0; i < search_arr.length; i++) {
-        let search = search_arr[i];
-        if (search.toUpperCase().startsWith(filter) && search_counter < 3) {
-            search_counter += 1;
-            body += '<li id="searchLI' + search_counter +'" class="o-searchLI">'
-                    +'<a class="o-searchA" id="searchA'
-                    + search_counter +'" href="#" onclick="selectSearchLI(' 
-                    + search_counter +')">' 
-                    + search +'</a></li>';
+    if (filter == "") {
+        document.getElementById('searchUL').innerHTML = "";
+        document.getElementById('searchH3').innerText = "";
+    } else {
+        for (i = 0; i < search_arr.length; i++) {
+            let search = search_arr[i];
+            if (search.toUpperCase().startsWith(filter) && search_counter < 3) {
+                search_counter += 1;
+                body += '<li id="searchLI' + search_counter +'" class="o-searchLI">'
+                        +'<a class="o-searchA" id="searchA'
+                        + search_counter +'" href="#" onclick="selectSearchLI(' 
+                        + search_counter +')">' 
+                        + search +'</a></li>';
+            }
         }
+        document.getElementById('searchUL').innerHTML = body;
+        document.getElementById('searchH3').innerText = "Genres";
     }
-    document.getElementById('searchUL').innerHTML = body;
 }
 
 function selectSearchLI(search_counter) {
@@ -168,7 +174,6 @@ function placeTracks() {
     let body = '';
     for (i = 0; i < tracks_arr.length; i++) {
         var track = tracks_arr[i];
-        console.log(track);
         body += '<li id="trackLI' + track_counter +'" class="o-trackLI">'
                     +'<a class="o-trackA" id="trackA'+ track_counter +'" href="#" '
                     +'onclick="selectTrackLI('+ track_counter +')">'
@@ -177,6 +182,13 @@ function placeTracks() {
         track_counter += 1;
     }
     document.getElementById('trackUL').innerHTML = body;
+    if (document.getElementById('trackUL').innerHTML == "") {
+        document.getElementById('trackH3').innerText = "";
+    } else {
+        document.getElementById('trackH3').innerText = "Tracks";
+        document.getElementById('searchUL').innerHTML = "";
+        document.getElementById('searchH3').innerText = "";
+    }
 }
 
 function selectTrackLI(track_counter) {
