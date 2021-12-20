@@ -13,7 +13,7 @@ const FEATURES = 'https://api.spotify.com/v1/audio-features/';
 let search_arr;
 let tracks_arr;
 let features_arr;
-let features_chart
+let features_chart;
 
 function onPageLoad() {
     refreshAccessToken();
@@ -135,28 +135,27 @@ function placeSearch() {
     let search_counter = 0;
     let body = '';
 
-    if (filter == "") {
-        document.getElementById('searchUL').innerHTML = "";
-        document.getElementById('searchH3').innerText = "";
-    } else {
-        for (i = 0; i < search_arr.length; i++) {
-            let search = search_arr[i];
-            if (search.toUpperCase().startsWith(filter) && search_counter < 3) {
-                search_counter += 1;
-                body += '<li id="searchLI' + search_counter +'" class="o-searchLI">'
-                        +'<a class="o-searchA" id="searchA'
-                        + search_counter +'" href="#" onclick="selectSearchLI(' 
-                        + search_counter +')">' 
-                        + search +'</a></li>';
-            }
+    for (i = 0; i < search_arr.length; i++) {
+        let search = search_arr[i];
+        if (search.toUpperCase().startsWith(filter) && search_counter < 3) {
+            search_counter += 1;
+            body += '<li id="searchLI' + search_counter +'" class="o-searchLI">'
+                    +'<a class="o-searchA" id="searchA'
+                    + search_counter +'" href="#" onclick="selectSearchLI(' 
+                    + search_counter +')">' 
+                    + search +'</a></li>';
         }
-        document.getElementById('searchUL').innerHTML = body;
-        document.getElementById('searchH3').innerText = "Genres";
+    }
+    document.getElementById('resultsUL').innerHTML = body;
+    document.getElementById('resultsH3').innerText = "Genres";
+    if (features_chart != null) {
+        features_chart.destroy();
     }
 }
 
 function selectSearchLI(search_counter) {
     let search = document.getElementById('searchA' + search_counter).innerHTML;
+    document.getElementById('searchGenres').value = search;
     requestRecommendations(search);
 }
 
@@ -177,17 +176,14 @@ function placeTracks() {
         body += '<li id="trackLI' + track_counter +'" class="o-trackLI">'
                     +'<a class="o-trackA" id="trackA'+ track_counter +'" href="#" '
                     +'onclick="selectTrackLI('+ track_counter +')">'
-                    +'<h3 class="o-trackH3">'+ track.name +'</h3>'
-                    +'<h4 class="o-trackH4">'+ track.artists[0].name +'</h4></a></li>';
+                    +'<h3 class="o-resultH3">'+ track.name +'</h3>'
+                    +'<h4 class="o-resultH4">'+ track.artists[0].name +'</h4></a></li>';
         track_counter += 1;
     }
-    document.getElementById('trackUL').innerHTML = body;
-    if (document.getElementById('trackUL').innerHTML == "") {
-        document.getElementById('trackH3').innerText = "";
-    } else {
-        document.getElementById('trackH3').innerText = "Tracks";
-        document.getElementById('searchUL').innerHTML = "";
-        document.getElementById('searchH3').innerText = "";
+    document.getElementById('resultsUL').innerHTML = body;
+    document.getElementById('resultsH3').innerText = "Tracks";
+    if (features_chart != null) {
+        features_chart.destroy();
     }
 }
 
@@ -219,7 +215,8 @@ function placeFeatures() {
                 data:[features_arr.acousticness, 
                       features_arr.danceability,
                       features_arr.energy,
-                      features_arr.valence]
+                      features_arr.valence],
+                backgroundColor:['#00b330','#009e2b','#008a25','#007520']
             }]
         },
         options:{
@@ -227,7 +224,9 @@ function placeFeatures() {
                 legend: {
                   display: false
                 }
-            }
+            },
+            responsive: true,
+            maintainAspectRatio: false
         }
     });
 }
