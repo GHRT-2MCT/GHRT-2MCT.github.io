@@ -175,7 +175,7 @@ html, body {
 @media screen and (min-width: 916px) {
     .container {
         grid-template-columns: 30% 1fr 30%;
-        -ms-grid-columns: 25% 1fr 25%;
+        -ms-grid-columns: 30% 1fr 30%;
         grid-template-rows: 104px 64px 48px 64px auto 64px 200px;
         -ms-grid-rows: 104px 64px 48px 64px auto 64px 200px;
     }
