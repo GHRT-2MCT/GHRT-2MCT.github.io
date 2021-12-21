@@ -132,15 +132,51 @@ html, body {
 .o-trackA, .o-trackA:visited {
     text-decoration: none;
     color: var(--global-color-alpha);
+
+    display: grid;
+    display: -ms-grid;
+    grid-template-columns: 1fr auto;
+    -ms-grid-columns: 1fr 20px;
+    grid-template-rows: auto 14px;
+    -ms-grid-rows: 1fr 14px;
 }
 .o-resultH3 {
+    grid-column: 1 / 2;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 1;
+    grid-row: 1 / 2;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 1;
+
     font-size: var(--global-font-size---);
     font-weight: var(--global-font-weight--);
 }
-.o-resultH4 {
+.o-resultH5 {
+    grid-column: 1 / 2;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 1;
+    grid-row: 2 / 3;
+    -ms-grid-row: 2;
+    -ms-grid-row-span: 1;
+
     font-size: var(--global-font-size);
     font-weight: var(--global-font-weight);
     color: gray;
+}
+.o-resultH4 {
+    grid-column: 2 / 3;
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 1;
+    grid-row: 1 / 3;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 2;
+
+    align-self: center;
+
+    font-size: var(--global-font-size--);
+    font-weight: var(--global-font-weight-);
+    color: rgb(180, 180, 180);
+    float: right;
 }
 
 

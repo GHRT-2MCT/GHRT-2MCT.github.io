@@ -177,7 +177,8 @@ function placeTracks() {
                     +'<a class="o-trackA" id="trackA'+ track_counter +'" href="#" '
                     +'onclick="selectTrackLI('+ track_counter +')">'
                     +'<h3 class="o-resultH3">'+ track.name +'</h3>'
-                    +'<h4 class="o-resultH4">'+ track.artists[0].name +'</h4></a></li>';
+                    +'<h5 class="o-resultH5">'+ track.artists[0].name +'</h5>'
+                    +'<h4 class="o-resultH4">'+ Math.round(track.duration_ms / 1000) +'s</h4></a></li>';
         track_counter += 1;
     }
     document.getElementById('resultsUL').innerHTML = body;
